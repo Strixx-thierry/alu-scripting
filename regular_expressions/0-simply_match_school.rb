@@ -1,3 +1,4 @@
 #!/usr/bin/env ruby
-puts ARGV.join.match(/School/) ? "School" : ""
+puts ARGV.join.scan(/School/).join
+
 
