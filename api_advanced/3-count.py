@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-""" 3-count.py """
+""" 3-count """
 import json
 import requests
 
 
 def count_words(subreddit, word_list, after="", count=[]):
-    """ prints a sorted count of given keywords """
+    """ Returns a list containing the counts of keywords"""
 
     if after == "":
         count = [0] * len(word_list)

@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""docs"""
+""" 2-recurse """
 import requests
 
 
 def recurse(subreddit, hot_list=[], after=None):
-    """"Doc"""
+    """Recursively fetches hot post titles from a given subreddit."""
     url = "https://www.reddit.com/r/{}/hot.json" \
         .format(subreddit)
     header = {'User-Agent': 'Mozilla/5.0'}

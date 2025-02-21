@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-1-main
-"""
+"""1-main"""
 import sys
 from 1-top_ten import top_ten
 
