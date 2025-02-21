@@ -1,13 +1,11 @@
 #!/usr/bin/python3
-"""
-1-top_ten
-"""
+"""1-top_ten"""
 import requests
 
 
 def top_ten(subreddit):
     """
-    prints the titles of the first 10 hot posts
+    prints the titles
     """
     reddit_url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     headers = {'User-agent': 'Mozilla/5.0'}
@@ -19,6 +17,6 @@ def top_ten(subreddit):
             for post in data['children'][:10]:
                 print(post['data']['title'])
         else:
-            print(None) 
+            print("None")
     else:
-        print(None)
+        print("None")
