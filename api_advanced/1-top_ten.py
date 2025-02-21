@@ -3,15 +3,24 @@
 
 import requests
 
-
 def top_ten(subreddit):
-    """Main function"""
-    URL = "https://www.reddit.com/r/{}/hot.json?limit=10".format(subreddit)
-
-    HEADERS = {"User-Agent": "PostmanRuntime/7.35.0"}
+    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
+    headers = {'User-Agent': 'MyBot/0.0.1'}
+    params = {'limit': 10}
     try:
-        RESPONSE = requests.get(URL, headers=HEADERS, allow_redirects=False)
-        HOT_POSTS = RESPONSE.json().get("data").get("children")
-        [print(post.get('data').get('title')) for post in HOT_POSTS]
-    except Exception:
+        response = requests.get(
+            url,
+            headers=headers,
+            params=params,
+            allow_redirects=False
+        )
+        # Check if the response status code is 200 (OK)
+        if response.status_code == 200:
+            data = response.json()
+            posts = data.get('data', {}).get('children', [])
+            for post in posts:
+                print(post.get('data', {}).get('title'))
+        else:
+            print(None)
+    except (requests.exceptions.RequestException, ValueError):
         print(None)
