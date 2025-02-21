@@ -1,22 +1,20 @@
 #!/usr/bin/python3
-"""1-top_ten"""
+""" this will queries the API for reddit """
 import requests
+import sys
 
 
 def top_ten(subreddit):
-    """
-    prints the titles
-    """
-    reddit_url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
-    headers = {'User-agent': 'Mozilla/5.0'}
-    response = requests.get(reddit_url, headers=headers, allow_redirects=False)
+    """getting top ten post titles"""
+    headers = {'User-Agent': 'xica369'}
+    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
+    parameters = {'limit': 10}
+    response = requests.get(url, headers=headers, allow_redirects=False,
+                            params=parameters)
 
     if response.status_code == 200:
-        data = response.json().get('data', {})
-        if data and 'children' in data:
-            for post in data['children'][:10]:
-                print(post['data']['title'])
-        else:
-            print("None")
+        titles_ = response.json().get('data').get('children')
+        for title_ in titles_:
+            print(title_.get('data').get('title'))
     else:
-        print("None")
+        print(None)
